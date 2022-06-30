@@ -1,0 +1,147 @@
+/* src/components/Modal/modalStyles.css */
+.modal {
+  position: fixed;
+  inset: 0; /* inset sets all 4 values (top right bottom left) much like how we set padding, margin etc., */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 999;
+  padding: 40px 20px 20px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-enter-done {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 997;
+  backdrop-filter: blur(5px) saturate(200%);
+}
+
+.modal-overlay-enter-done {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-overlay-exit {
+  opacity: 0;
+}
+
+.modal-title {
+  font-size: 2rem;
+}
+
+.modal-content {
+  width: 50%;
+  min-width: 300px;
+  max-width: 670px;
+  height: auto;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  box-shadow: 0px 10px 8px #3b3b3b;
+}
+
+.modal-header {
+  position: relative;
+  top: 50px;
+  width: 50%;
+  max-width: 670px;
+  min-width: 300px;
+  height: 50px;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 996;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.country-button {
+  width: 200px;
+  background-color: transparent;
+  border: 1px solid black;
+  /* justify-content: flex-start; */
+}
+
+.country-chooser-modal-flag {
+  margin-right: 10px;
+}
+
+.confirm-button {
+  min-width: 200px;
+  align-self: center;
+}
+
+.cardy {
+  width: 100% !important;
+  min-width: 300px !important;
+  max-width: 670px !important;
+  height: auto !important;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: rgba(255, 255, 255, 0.747); */
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: inset 4px 4px 5px 0 rgba(255, 255, 255, 0.25), inset -4px -4px 5px 0 rgba(0, 0, 0, 0.125),
+    0 0 10px 1px rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(5px) saturate(200%);
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 1),
+    90%,
+    rgba(255, 255, 255, 0.6)
+  ) !important;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,0 +1,28 @@
+.button {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+}
+
+button.is-primary-darker {
+  background-color: #6cbea4;
+  color: white;
+  border: none;
+  border-radius: 0px;
+}
+
+button.is-primary-darker:hover {
+  background-color: #76d1b4;
+  color: white;
+}
+
+.button.is-dark {
+background-color: #0f1626;
+border-radius: 0px;
+transition: all 0.25s ease-in-out;
+}
+
+.button.is-dark:hover {
+  background-color: white;
+  color: black;
+}

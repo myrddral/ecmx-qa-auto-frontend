@@ -1,0 +1,157 @@
+{
+  "notfound": {
+    "title1": "404",
+    "title2": "The requested page does not exist",
+    "button": "Back to the homepage"
+  },
+  "navbar": {
+    "button.login": "Sign In",
+    "button.logout": "Logout",
+    "button.signup": "Create account"
+  },
+  "languageSelectorButtonText": "Language",
+  "modal": {
+    "countryChooser": {
+      "title": "Which country are you in?",
+      "confirmButton": "Save"
+    }
+  },
+  "roleCodes": {
+    "role_ADMIN": "QA Admin",
+    "role_ASSESSMENT_PARTNER_ADMIN": "Partner Admin",
+    "role_ASSESSMENT_PARTNER_USER": "Partner User",
+    "role_USER": "User"
+  },
+  "login": {
+    "title": "Sign In",
+    "button": "Sign In"
+  },
+  "registration": {
+    "title": "Create account",
+    "firstName": "Firstname",
+    "lastName": "Lastname",
+    "email": "Email address",
+    "phone": "Phone number",
+    "password": "Password",
+    "passwordConf": "Password confirmation",
+    "button": "Submit"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "payment": {
+    "pay": "Pay",
+    "title": "Pay by card",
+    "text": "Your credit card will be charged for:",
+    "success": "Successful payment, thank you!"
+  },
+  "subscription": {
+    "title": "Choose a package",
+    "chooseButton": "Choose"
+  },
+  "form": {
+    "errors.emailMissing": "Please enter your email address!",
+    "errors.invalidEmail": "Invalid email address!",
+    "errors.passwordMissing": "Please enter your password!",
+    "errors.passwordNotMatch": "The passwords do not match!",
+    "errors.invalidLogin": "Invalid email or password!",
+    "errors.firstNameMissing": "Please enter your firstname!",
+    "errors.lastNameMissing": "Please enter your lastname!"
+  },
+  "homepage": {
+    "title": "QA Auto",
+    "welcome.part1": "You can buy or sell your car.",
+    "welcome.part2": "In case of sale, you have the possibility to have the car inspected by a professional surveyor or even individually.",
+    "welcome.button": "Show me the cars",
+    "card1.title": "I'm looking for a car",
+    "card1.text": "Here at QAauto, you can buy or sell you car. In case of sale, you have the possibility to have the car inspected by a professional surveyor or even individually",
+    "card1.button": "I'm looking for a car",
+    "card2.title": "I have a car to sell",
+    "card2.text": "Here at QAauto, you can buy or sell you car. In case of sale, you have the possibility to have the car inspected by a professional surveyor or even individually",
+    "card2.button": "I have a car to sell",
+    "card3.title": "I would join as a service or inspector",
+    "card3.text": "You have the possibility to join as an official service, as an inspector, so you can start receiving requests.",
+    "card3.button": "I want to join",
+    "card4.title": "I have a question",
+    "card4.text": "Here at QAauto, you can buy or sell you car. In case of sale, you have the possibility to have the car inspected by a professional surveyor or even individually",
+    "card4.button": "Contact support"
+  },
+  "sellPage": {
+    "title": "Sell your car with us",
+    "part1": "You can sell your car after an inspection",
+    "part2": "You can do this for free, but there will be no profit",
+    "part3": "With a professional surveyor, buyers are 81% more likely to buy a car because they are assured that every detail of the car has been revealed.",
+    "part4.1": "A one-off survey costs",
+    "part4.price": "20.000 Ft",
+    "part4.2": ", which includes a full survey, suggestions and highlighting for advertising.",
+    "card1.title": "Find a surveyor",
+    "card1.input": {
+      "label": "Enter your postcode",
+      "help": "Please enter your postcode!"
+    },
+    "card1.button": "Search",
+    "card2.title": "I'll inspect my car myself",
+    "card2.button": "Go to the app"
+  },
+  "chooseInspector": {
+    "title": "Choose inspector",
+    "part1": "Choose your inspector, then let them know, where to meet",
+    "part2": "A one-off inspection costs 20.000 Ft, which includes a full inspection, suggestions and highlighting for advertising.",
+    "part3": "The following inspectors are within your selected area",
+    "button": "Select"
+  },
+  "chosenInspector": {
+    "title": "Details",
+    "yourChoosenInspector": "Your choosen inspector:",
+    "part1": "Tell us where to meet. The inspector will then make an appointment with you by email or phone",
+    "details": {
+      "name.input": {
+        "label": "Name",
+        "help": "Please enter your name!"
+      },
+      "postcode.input": {
+        "label": "Postcode",
+        "help": "Please enter your postcode!"
+      },
+      "email.input": {
+        "label": "Email",
+        "help": "Please enter your email address!"
+      },
+      "phone.input": {
+        "label": "Phone",
+        "help": "Please enter your phone number!"
+      }
+    },
+    "submitButton": "Submit"
+  },
+  "emailSent": {
+    "title": "Email sent",
+    "part1": "The inspector will reach for you soon",
+    "button": "Back to the homepage"
+  },
+  "buyPage": {
+    "title": "We help you find your car",
+    "part1": "If you don't know what you're looking for, here are some alternatives",
+    "part2": "If you know what you're looking for, just give us the details",
+    "part3": "Whichever you choose, all you have to do is sit back and the offers will come",
+    "card1.title": "I know what I am looking for",
+    "card1.input1": {
+      "label": "Car make",
+      "help": "Please select a brand!"
+    },
+    "card1.input2": {
+      "label": "Postcode",
+      "help": "Please enter your postcode!"
+    },
+    "card1.button": "Search",
+    "card2.title": "I do not know what I am looking for",
+    "card2.text": "We help you find your ideal car",
+    "card2.button": "Search"
+  },
+  "offersArriving": {
+    "title": "The offers will arrive soon!",
+    "part1": "Sit back",
+    "button1": "New search",
+    "button2": "Back to the homepage"
+  }
+}

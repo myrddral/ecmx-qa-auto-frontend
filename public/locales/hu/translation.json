@@ -1,0 +1,157 @@
+{
+  "notfound": {
+    "title1": "404",
+    "title2": "A keresett oldal nem létezik",
+    "button": "Vissza a főoldalra"
+  },
+  "navbar": {
+    "button.login": "Belépés",
+    "button.logout": "Kijelentkezés",
+    "button.signup": "Regisztráció"
+  },
+  "languageSelectorButtonText": "Nyelv",
+  "modal": {
+    "countryChooser": {
+      "title": "Melyik országban vagy?",
+      "confirmButton": "Mentés"
+    }
+  },
+  "roleCodes": {
+    "role_ADMIN": "QA Adminisztrátor",
+    "role_ASSESSMENT_PARTNER_ADMIN": "Partner Adminisztrátor",
+    "role_ASSESSMENT_PARTNER_USER": "Partner Felhasználó",
+    "role_USER": "Felhasználó"
+  },
+  "login": {
+    "title": "Bejelentkezés",
+    "button": "Bejelentkezés"
+  },
+  "registration": {
+    "title": "Regisztráció",
+    "firstName": "Keresztnév",
+    "lastName": "Vezetéknév",
+    "email": "Email cím",
+    "phone": "Telefonszám",
+    "password": "Jelszó",
+    "passwordConf": "Jelszó ismét",
+    "button": "Regisztráció"
+  },
+  "profile": {
+    "title": "Profil"
+  },
+  "payment": {
+    "pay": "Fizetés",
+    "title": "Bankkártyás fizetés",
+    "text": "A kártyád a következő összeggel terheljük:",
+    "success": "Sikeres fizetés, köszönjük!"
+  },
+  "subscription": {
+    "title": "Válassz csomagot",
+    "chooseButton": "Kiválaszt"
+  },
+  "form": {
+    "errors.emailMissing": "Kérlek, add meg az email címed!",
+    "errors.invalidEmail": "Érvénytelen email cím!",
+    "errors.passwordMissing": "Kérlek, add meg a jelszavad!",
+    "errors.passwordNotMatch": "A megadott jelszó nem egyezik!",
+    "errors.invalidLogin": "Érvénytelen felhasználónév/jelszó!",
+    "errors.firstNameMissing": "Kérlek, add meg a keresztneved!",
+    "errors.lastNameMissing": "Kérlek, add meg a vezetékneved!"
+  },
+  "homepage": {
+    "title": "QA Auto",
+    "welcome.part1": "Autót tudsz venni, autót tudsz eladni.",
+    "welcome.part2": "Eladás esetén lehetőséged van hivatásos felmérővel vagy akár egyénileg is felmérni az autót.",
+    "welcome.button": "Lássam az autókat",
+    "card1.title": "Autó keresés",
+    "card1.text": "Itt a QAautónál autót tudsz venni, autót tudsz eladni. Eladás esetén lehetőséged van hivatásos felmérővel vagy akár egyénileg is felmérni az autót",
+    "card1.button": "Autót keresek",
+    "card2.title": "Eladó autóm van",
+    "card2.text": "Itt a QAautónál autót tudsz venni, autót tudsz eladni. Eladás esetén lehetőséged van hivatásos felmérővel vagy akár egyénileg is felmérni az autót",
+    "card2.button": "Eladó autóm van",
+    "card3.title": "Szervízként vagy felmérőként csatlakoznék",
+    "card3.text": "Lehetőséged van hivatalos szervízként, felmérőként csatlakozni, így máris fogadhatod a felkéréseket.",
+    "card3.button": "Csatlakoznék",
+    "card4.title": "Kérdésem van",
+    "card4.text": "Itt a QAautónál autót tudsz venni, autót tudsz eladni. Eladás esetén lehetőséged van hivatásos felmérővel vagy akár egyénileg is felmérni az autót",
+    "card4.button": "Ügyfélszolgálat"
+  },
+  "sellPage": {
+    "title": "Add el velünk autód",
+    "part1": "Autód felmérést követően tudod eladni",
+    "part2": "Ezt megteheted te díjmentesen, viszont így nem lesz profit",
+    "part3": "Hivatásos felmérővel való felmérés esetén az autót 81%-kal nagyobb eséllyel veszik meg a vevők, mivel meg vannak bizonyosodva róla, hogy az autó minden részlete fel van tárva.",
+    "part4.1": "Az egyszeri felmérés ára",
+    "part4.price": "20.000 Ft",
+    "part4.2": ", mely tartalmaz egy teljes körű felmérést, javaslatokat és kiemelést a hirdetésre.",
+    "card1.title": "Felmérő keresése",
+    "card1.input": {
+      "label": "Add meg az irányítószámod",
+      "help": "Kérlek, add meg az irányítószámod!"
+    },
+    "card1.button": "Keresés",
+    "card2.title": "Magam mérem fel az autóm",
+    "card2.button": "Tovább az apphoz"
+  },
+  "chooseInspector": {
+    "title": "Felmérő kiválasztása",
+    "part1": "Válaszd ki a felmérőd majd add meg, hogy hol találkozok",
+    "part2": "Az egyszeri felmérés ára 20.000 Ft, mely tartalmaz egy teljes körű felmérést, javaslatokat és kiemelést a hirdetésre.",
+    "part3": "A közeledben az alábbi felmérők érhetőek el",
+    "button": "Kiválasztom"
+  },
+  "chosenInspector": {
+    "title": "Adatok",
+    "yourChoosenInspector": "Kiválaszotott felmérőd:",
+    "part1": "Add meg, hogy hova érkezzen ki. Ezután a felmérő emailben vagy telefonon fog időpontot egyeztetni veled",
+    "details": {
+      "name.input": {
+        "label": "Név",
+        "help": "Kérlek, add meg a neved!"
+      },
+      "postcode.input": {
+        "label": "Irányítószám",
+        "help": "Kérlek, add meg az irányítószámot!"
+      },
+      "email.input": {
+        "label": "Email cím",
+        "help": "Kérlek, add meg a címet!"
+      },
+      "phone.input": {
+        "label": "Telefon",
+        "help": "Kérlek, add meg a telefonszámot!"
+      }
+    },
+    "submitButton": "Küldés"
+  },
+  "emailSent": {
+    "title": "Email elküldve",
+    "part1": "A felmérő hamarosan keresni fog téged",
+    "button": "Vissza a főoldalra"
+  },
+  "buyPage": {
+    "title": "Segítünk autót találni",
+    "part1": "Ha nem tudod mit keresel, adunk pár alternatívát",
+    "part2": "Ha tudod mit keresel, csak add meg az adatokat",
+    "part3": "Bármelyik esetet is választod, neked csak hátra kell dőlnöd és érkeznek az ajánlatok",
+    "card1.title": "Tudom mit keresek",
+    "card1.input1": {
+      "label": "Autó típusa",
+      "help": "Kérlek, add meg keresett autó típusát!"
+    },
+    "card1.input2": {
+      "label": "Irányítószám",
+      "help": "Kérlek, add meg az irányítószámod!"
+    },
+    "card1.button": "Keresés",
+    "card2.title": "Nem tudom mit keresek",
+    "card2.text": "Segítünk megtalálni az ideális autód",
+    "card2.button": "Keresés"
+  },
+  "offersArriving": {
+    "title": "Hamarosan érkeznek az ajánlatok",
+    "part1": "Dőlj hátra",
+    "button1": "Leadok egy újabb keresést",
+    "button2": "Vissza a főoldalra"
+  }
+}
