@@ -23,7 +23,7 @@
     "react-dom": "^18.1.0",
     "react-i18next": "^11.16.7",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-transition-group": "^4.4.2",
     "uuid": "^8.3.2",
     "yup": "^0.32.11",
