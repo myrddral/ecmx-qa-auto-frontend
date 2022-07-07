@@ -45,9 +45,12 @@
     "text": "A kártyád a következő összeggel terheljük:",
     "success": "Sikeres fizetés, köszönjük!"
   },
-  "subscription": {
+  "packages": {
     "title": "Válassz csomagot",
     "chooseButton": "Kiválaszt"
+  },
+  "subscriptions": {
+    "success": "Előfizetés rögzítve, köszönjük!"
   },
   "form": {
     "errors.emailMissing": "Kérlek, add meg az email címed!",

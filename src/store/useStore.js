@@ -37,8 +37,12 @@ const useStore = create((set) => ({
   },
   
   inspectors: [],
+  setInspectors: (inspectorlist) => {
+    set(() => ({ inspectors: inspectorlist }));
+  },
+
   choosenInspector: null,
-  setInspector: (inspector) => {
+  setChoosenInspector: (inspector) => {
     set(() => ({ choosenInspector: inspector }));
   },
 

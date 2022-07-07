@@ -4,9 +4,10 @@ import useStore from "../../store/useStore";
 import cx from "classnames";
 import { useState } from "react";
 import { getApiUrl } from "../../utils/helpers";
+import { Link } from "react-router-dom";
 
 const ModalContentLogin = ({ setIsOpen }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const setCurrentUser = useStore((state) => state.setCurrentUser);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -40,13 +41,13 @@ const ModalContentLogin = ({ setIsOpen }) => {
     });
 
     const user = await response.json();
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem("currentUser", JSON.stringify(user));
     setCurrentUser(user);
     localStorage.setItem("token", response.headers.get("Authorization"));
     setIsSubmitting(false);
     setIsOpen(false);
   };
-  
+
   const LoginForm = () => {
     const formik = useFormik({
       initialValues: {
@@ -92,7 +93,7 @@ const ModalContentLogin = ({ setIsOpen }) => {
               })}
               id="password"
               name="password"
-              type="text"
+              type="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
@@ -107,7 +108,11 @@ const ModalContentLogin = ({ setIsOpen }) => {
             <p className="help is-invisible">placeholder</p>
           )}
         </div>
-
+        <Link to={`/reset`}>
+          <p className="pb-4 is-size-7" style={{ textAlign: "center", color: "blue", cursor: "pointer" }}>
+            Elfelejtett jelszó?
+          </p>
+        </Link>
         <div className="field">
           <div className="control is-flex is-justify-content-center">
             <button

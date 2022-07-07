@@ -22,6 +22,7 @@ import Payment from "./components/payment/Payment";
 import useStore from "./store/useStore";
 import Packages from "./components/payment/Packages";
 import Profile from "./components/profile/Profile";
+import PasswordReset from "./components/PasswordReset";
 // import { useTranslation } from "react-i18next";
 
 function App() {
@@ -69,8 +70,8 @@ function App() {
           <Route path={`${baseRouteUrl}/profile`} element={<Profile />} />
           <Route path={`${baseRouteUrl}/packages/payment`} element={<Payment />} />
           <Route path={`${baseRouteUrl}/packages`} element={<Packages />} />
-          {/* <Route path={`${baseRouteUrl}/signup/success`} element={<Success useCase={'registration'}/>} /> */}
           <Route path={`${baseRouteUrl}/admin`} element={<Admin />} />
+          <Route path={`/reset`} element={<PasswordReset />} />
           <Route path={`/serverlogs`} element={<Logs />} />
           <Route path={`/confirm-account`} element={<ConfirmAccount />} />
           <Route path="*" element={<NotFound />} />

@@ -10,6 +10,8 @@ const Success = ({useCase}) => {
           />
           {useCase === "registration" && <p className="mt-4">Succesful registration, please check your inbox to confirm your account.</p>}
           {useCase === "confirmAccount" && <p className="mt-4">Account successfully confirmed.</p>}
+          {useCase === "passwordReset" && <p className="mt-4">Please check your email inbox for the next step.</p>}
+          {useCase === "passwordResetSuccess" && <p className="mt-4">Your password has been successfully changed. Please log in.</p>}
         </header>
       </section>
     </>

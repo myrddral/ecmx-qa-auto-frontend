@@ -21,7 +21,7 @@ const PaymentForm = ({ amountToCharge }) => {
   const paymentForm = (
     <form className="payment-form" onSubmit={handleSubmit} style={{position: 'relative', zIndex: 1}}>
       <div id="overlay"></div>
-      <Loader />
+      {/* <Loader /> */}
       <div className="form-header">
         <p className="form-header-title">{t("payment.title")}</p>
         <p>{t("payment.text")}</p>

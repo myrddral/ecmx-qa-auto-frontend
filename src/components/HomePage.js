@@ -16,7 +16,7 @@ const HomePage = () => {
     <>
       <section className="intro section pt-0" style={{ height: "100%", minHeight: 260, color: "white" }}>
         <header
-          className="is-flex is-flex-direction-column is-justify-content-center is-desktop has-text-right pl-3 pr-3"
+          className="is-flex is-flex-direction-column is-justify-content-center is-desktop has-text-right pt-6 pl-3 pr-3"
           style={{ height: "100%" }}
         >
           <p className="block is-size-3 is-size-4-mobile has-text-weight-bold">{t("homepage.welcome.part1")}</p>

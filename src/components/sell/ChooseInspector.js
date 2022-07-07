@@ -2,28 +2,37 @@ import { useTranslation } from "react-i18next";
 import useStore from "../../store/useStore";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getApiUrl } from "../../utils/helpers";
+import { useParams } from "react-router-dom";
 
 const ChooseInspector = () => {
   const { t, i18n } = useTranslation();
   let navigate = useNavigate();
+  const params = useParams();
   const inspectors = useStore((state) => state.inspectors);
+  const setInspectors = useStore((state) => state.setInspectors);
   const choosenInspector = useStore((state) => state.choosenInspector);
-  const setInspector = useStore((state) => state.setInspector);
+  const setChoosenInspector = useStore((state) => state.setChoosenInspector);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const fetchedInspectors = await fetch(`${getApiUrl()}/users/assessors`);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const fetchedInspectors = await fetch(`${getApiUrl()}/users/assessors/?zip=${params.postCode}`);
+      const inspectorList = await fetchedInspectors.json();
+      setInspectors(inspectorList);
+    })();
+  }, [params.postCode, setInspectors]);
 
   const handleOnClick = (inspector) => {
-    setInspector(inspector);
+    setChoosenInspector(inspector);
   };
 
   const inspectorList = inspectors.map((inspector) => (
-    <div key={inspector.name} className="columns is-flex">
+    <div key={inspector.ID} className="columns is-flex">
       <span id="inspector-name" className="column">
-        {inspector.name}
+        {inspector.FIRST_NAME} {inspector.LAST_NAME}
+      </span>
+      <span id="inspector-company" className="column">
+        {inspector.COMPANY.NAME}
       </span>
       <button className="button column is-primary-darker" onClick={() => handleOnClick(inspector)}>
         {t("chooseInspector.button")}
@@ -47,7 +56,7 @@ const ChooseInspector = () => {
           </div>
         </section>
         <section className="section">
-          <div className="box-darken container is-max-desktop has-text-centered" style={{ maxWidth: 400 }}>
+          <div className="box-darken container is-max-desktop has-text-centered">
             {inspectorList}
           </div>
         </section>
@@ -125,7 +134,7 @@ const ChooseInspector = () => {
             </p>
             <p className="block is-size-7">
               Mégsem őt szeretnéd?{" "}
-              <span onClick={() => setInspector(null)} style={{ color: "blue", cursor: "pointer" }}>
+              <span onClick={() => setChoosenInspector(null)} style={{ color: "blue", cursor: "pointer" }}>
                 {" "}
                 Vissza ↩
               </span>

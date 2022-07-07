@@ -45,9 +45,12 @@
     "text": "Your credit card will be charged for:",
     "success": "Successful payment, thank you!"
   },
-  "subscription": {
+  "packages": {
     "title": "Choose a package",
     "chooseButton": "Choose"
+  },
+  "subscriptions": {
+    "success": "Subscription created, thank you!"
   },
   "form": {
     "errors.emailMissing": "Please enter your email address!",

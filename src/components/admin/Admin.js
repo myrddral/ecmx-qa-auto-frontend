@@ -1,4 +1,5 @@
-import Ordering from "./Ordering";
+// import Ordering from "./Ordering";
+import Ordering from "./Ordering_new";
 import useStore from "../../store/useStore";
 
 const Admin = () => {

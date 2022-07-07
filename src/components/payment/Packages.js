@@ -10,7 +10,7 @@ const Packages = () => {
       <section className="section">
         <div className="container is-max-desktop has-text-centered">
           <header className="block has-text-centered has-text-weight-medium is-size-1">
-            {t("subscription.title")}
+            {t("packages.title")}
           </header>
           {/* <p className="block is-size-5">{t("buyPage.part1")}</p> */}
         </div>
@@ -31,8 +31,8 @@ const Packages = () => {
             <div className="plan-item">-</div> */}
           </div>
           <div className="plan-footer">
-            <Link to={`/${i18n.language}/packages/payment?package=1`}>
-              <button className="button is-fullwidth">{t("subscription.chooseButton")}</button>
+            <Link to={`/${i18n.language}/packages/payment?packages=1`}>
+              <button className="button is-fullwidth">{t("packages.chooseButton")}</button>
             </Link>
           </div>
         </div>
@@ -52,8 +52,8 @@ const Packages = () => {
             <div className="plan-item">100 Email Boxes</div> */}
           </div>
           <div className="plan-footer">
-            <Link to={`/${i18n.language}/packages/payment?package=2`}>
-              <button className="button is-fullwidth">{t("subscription.chooseButton")}</button>
+            <Link to={`/${i18n.language}/packages/payment?packages=2`}>
+              <button className="button is-fullwidth">{t("packages.chooseButton")}</button>
             </Link>
           </div>
         </div>
@@ -73,8 +73,8 @@ const Packages = () => {
             <div className="plan-item">1000 Email Boxes</div> */}
           </div>
           <div className="plan-footer">
-            <Link to={`/${i18n.language}/packages/payment?package=3`}>
-              <button className="button is-fullwidth">{t("subscription.chooseButton")}</button>
+            <Link to={`/${i18n.language}/packages/payment?packages=3`}>
+              <button className="button is-fullwidth">{t("packages.chooseButton")}</button>
             </Link>
           </div>
         </div>
