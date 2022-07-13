@@ -1,15 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import useStore from "../../store/useStore";
 import cx from "classnames";
 import { useState } from "react";
-import { getApiUrl } from "../../utils/helpers";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const ModalContentLogin = ({ setIsOpen }) => {
-  const { t, i18n } = useTranslation();
-  const setCurrentUser = useStore((state) => state.setCurrentUser);
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { handleLogin } = useAuth();
 
   const validate = (values) => {
     const errors = {};
@@ -31,19 +30,7 @@ const ModalContentLogin = ({ setIsOpen }) => {
 
   const handleSubmit = async (values) => {
     setIsSubmitting(true);
-
-    const response = await fetch(`${getApiUrl()}/auth`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
-
-    const user = await response.json();
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    setCurrentUser(user);
-    localStorage.setItem("token", response.headers.get("Authorization"));
+    await handleLogin(values);
     setIsSubmitting(false);
     setIsOpen(false);
   };

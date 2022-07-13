@@ -23,9 +23,11 @@ import useStore from "./store/useStore";
 import Packages from "./components/payment/Packages";
 import Profile from "./components/profile/Profile";
 import PasswordReset from "./components/PasswordReset";
+import useAuth from "./hooks/useAuth";
 // import { useTranslation } from "react-i18next";
 
 function App() {
+  useAuth();
   const baseRouteUrl = "/:locale";
   const [isOpen, setIsOpen] = useState(false);
   const setCurrentUser = useStore((state) => state.setCurrentUser);

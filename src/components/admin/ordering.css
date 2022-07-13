@@ -20,3 +20,8 @@
   font-weight: bold;
   margin: 0;
 }
+
+.assessment-type-selector-closed {
+  height: 60px !important;
+  transition: height 0.3s;
+}
