@@ -105,6 +105,10 @@ color: white;
 
 /* HELPERS */
 
+.pointer-cursor {
+  cursor: pointer;
+}
+
 .column-space-between {
   display: flex;
   flex-direction: column;

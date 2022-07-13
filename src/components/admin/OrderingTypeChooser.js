@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const OrderingTypeChooser = ({ setIsShowQuestionList }) => {
+const OrderingTypeChooser = ({ setIsShowQuestionList, setAssessmentVersionType }) => {
   const [location, setLocation] = useState();
   const [fuelType, setFuelType] = useState();
   const [chassisType, setChassisType] = useState();
@@ -10,10 +10,16 @@ const OrderingTypeChooser = ({ setIsShowQuestionList }) => {
   useEffect(() => {
     if (isAllSelected) {
       setIsShowQuestionList(true);
+      setAssessmentVersionType({
+        locaton: location,
+        fuelType: fuelType,
+        chassisType: chassisType,
+        noOfDoors: noOfDoors,
+      });
     } else if (!isAllSelected) {
       setIsShowQuestionList(false);
     }
-  }, [isAllSelected, setIsShowQuestionList]);
+  }, [isAllSelected, setIsShowQuestionList, setAssessmentVersionType, chassisType, fuelType, location, noOfDoors]);
 
   const clearSelection = () => {
     setLocation(null);
@@ -25,8 +31,8 @@ const OrderingTypeChooser = ({ setIsShowQuestionList }) => {
   return (
     <>
       <div
-        className={`assessment-type-selector${isAllSelected && "-closed"}`}
-        style={{ height: 180, transition: "0.3s height" }}
+        className={`assessment-type-selector${isAllSelected && "-closed pointer-cursor"}`}
+        style={{ height: 180, transition: "0.4s height" }}
         onClick={isAllSelected ? clearSelection : undefined}
       >
         <div className="select is-multiple is-primary mr-3">
@@ -47,7 +53,6 @@ const OrderingTypeChooser = ({ setIsShowQuestionList }) => {
           {!isAllSelected && (
             <select multiple size="4" onChange={(e) => setFuelType(e.target.value)} style={{ width: 160 }}>
               <option value="Benzin">Benzin</option>
-              <option value="Elektromos">Elektromos</option>
               <option value="Dízel">Dízel</option>
               <option value="Elektromos">Elektromos</option>
               <option value="Hybrid">Hybrid</option>

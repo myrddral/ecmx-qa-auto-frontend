@@ -24,6 +24,7 @@ import Packages from "./components/payment/Packages";
 import Profile from "./components/profile/Profile";
 import PasswordReset from "./components/PasswordReset";
 import useAuth from "./hooks/useAuth";
+import { Toaster } from 'react-hot-toast';
 // import { useTranslation } from "react-i18next";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
         <ModalContentCountryChooser setIsOpen={setIsOpen} />
       </Modal>
+      <Toaster />
       <div className="content-area">
         <Routes>
           {/* <Route path="/" element={<Navigate to={i18n.language} replace />} /> */}

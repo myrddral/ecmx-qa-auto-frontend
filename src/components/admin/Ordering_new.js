@@ -4,16 +4,26 @@ import { getApiUrl } from "../../utils/helpers";
 import OrderingTypeChooser from "./OrderingTypeChooser";
 import QuestionsList from "./QuestionsList";
 import Modal from "../modal/Modal";
+import toast from "react-hot-toast";
 import "./ordering.css";
 
 const Ordering = () => {
   const [currentVersion, setCurrentVersion] = useState(null);
   const [translations, setTranslations] = useState([]);
   const [questionsGroups, setQuestionsGroups] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isShowQuestionList, setIsShowQuestionList] = useState(false);
+  const [assessmentVersionType, setAssessmentVersionType] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    isSaved && toast.success("Változtatások sikeresen elmentve!");
+  }, [isSaved]);
+
+  useEffect(() => {
+    error && toast.error(error.toString());
+  }, [error]);
 
   useEffect(() => {
     const headers = {
@@ -22,8 +32,9 @@ const Ordering = () => {
     };
 
     fetchLatestVersionNumber();
-    currentVersion && fetchGroups();
+    currentVersion && isShowQuestionList && fetchGroups();
     fetchTranslations();
+
     async function fetchLatestVersionNumber() {
       try {
         const url = `${getApiUrl()}/assessments/get-latest-version-number`;
@@ -31,7 +42,7 @@ const Ordering = () => {
         const version = await response.text();
         setCurrentVersion(version);
       } catch (err) {
-        console.log(err);
+        setError(err);
       }
     }
 
@@ -44,7 +55,7 @@ const Ordering = () => {
         groups.map((group) => group.ASSESSMENTS_QUESTIONS.sort((a, b) => a.QUESTION_ORDER - b.QUESTION_ORDER));
         setQuestionsGroups(groups);
       } catch (err) {
-        console.log(err);
+        setError(err);
       }
     }
 
@@ -56,71 +67,60 @@ const Ordering = () => {
         const translations = await response.json();
         setTranslations(translations);
       } catch (err) {
-        console.log(err);
+        setError(err);
       }
     }
-  }, [currentVersion]);
-
-  const updateGroupsOrder = async () => {
-    setIsOpen(true);
-    setIsSubmitting(true);
-    const groupsJson = JSON.stringify(questionsGroups);
-    const groups = JSON.parse(groupsJson);
-    const response = await fetch(`${getApiUrl()}/assessments/add-new-version`, {
-      method: "POST",
-      body: JSON.stringify(groups),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    });
-    console.log(await response.json());
-    if (response.ok) {
-      setIsSaved(true);
-      setIsSubmitting(false);
-    }
-    setTimeout(() => {
-      setIsSaved(false);
-      // window.location.reload();
-    }, 3000);
-  };
+  }, [currentVersion, isShowQuestionList]);
 
   return (
     <>
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-        <ModalContentConfirmSave setIsOpen={setIsOpen} isSaved={isSaved} />
+        <ModalContentConfirmSave
+          setIsOpen={setIsOpen}
+          setIsSaved={setIsSaved}
+          questionsGroups={questionsGroups}
+          assessmentVersionType={assessmentVersionType}
+        />
       </Modal>
-      {translations && questionsGroups && (
-        <>
-          <section className="filter-section mt-5 mb-5">
-            <div className="container">
-              <div className="columns">
-                <div className="column is-narrow">
-                  <OrderingTypeChooser setIsShowQuestionList={setIsShowQuestionList}/>
-                </div>
-                <div className="column is-flex is-justify-content-flex-end">
-                  <button
-                    className={`button is-primary-darker m-4 ${isSubmitting && "is-loading"}`}
-                    onClick={() => updateGroupsOrder()}
-                  >
+      <>
+        <section className="filter-section mt-5 mb-5">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-narrow">
+                <OrderingTypeChooser
+                  setIsShowQuestionList={setIsShowQuestionList}
+                  setAssessmentVersionType={setAssessmentVersionType}
+                />
+              </div>
+              <div className="column is-flex is-justify-content-flex-end">
+                {isShowQuestionList && (
+                  <button className={`button is-primary-darker m-4`} onClick={() => setIsOpen(true)}>
                     Mentés
                   </button>
-                </div>
+                )}
               </div>
             </div>
-          </section>
-          <section>
-            <div className="container">
-              {isShowQuestionList ? <QuestionsList
+          </div>
+        </section>
+        <section>
+          <div className="container">
+            {isShowQuestionList ? (
+              <QuestionsList
                 translations={translations}
                 questionsGroups={questionsGroups}
                 setQuestionsGroups={setQuestionsGroups}
                 isSaved={isSaved}
-              /> : <div>Válassz kategóriát minden listán.</div>}
-            </div>
-          </section>
-        </>
-      )}
+              />
+            ) : (
+              <section className="section">
+                <header className="block has-text-centered has-text-weight-light is-size-5 pt-6">
+                  Válassz kategóriát minden listán a kérdések megjelenítéséhez.
+                </header>
+              </section>
+            )}
+          </div>
+        </section>
+      </>
     </>
   );
 };

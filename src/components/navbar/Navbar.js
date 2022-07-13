@@ -18,20 +18,20 @@ const Navbar = () => {
     setIsOpen(true);
   };
 
-  const hideDropdown = () => {
-    document.querySelector('.navbar-dropdown').style.display = 'none';
-  }
+  // const hideDropdown = () => {
+  //   document.querySelector('.navbar-dropdown').style.display = 'none';
+  // }
 
-  const showDropdown = () => {
-    document.querySelector('.navbar-dropdown').style.display = 'block';
-  }
+  // const showDropdown = () => {
+  //   document.querySelector('.navbar-dropdown').style.display = 'block';
+  // }
 
   return (
     <>
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
         <ModalContentLogin setIsOpen={setIsOpen} />
       </Modal>
-      <nav ref={navbarRef} className="navbar" role="navigation" aria-label="main navigation" onClick={hideDropdown}>
+      <nav ref={navbarRef} className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand pl-6">
           <a href="/">
             <img src={logo} className="App-logo" alt="logo" />
@@ -45,26 +45,31 @@ const Navbar = () => {
         </div>
         <div className="navbar-menu ml-6">
           <div className="navbar-start">
-            <a className="navbar-item" href="/">
+            <Link className="navbar-item" to={`/${i18n.language}/buy`}>
               Keresek
-            </a>
-            <a className="navbar-item" href="/">
+            </Link>
+            <Link className="navbar-item" to={`/${i18n.language}/sell`}>
               Eladok
-            </a>
-            <div className="navbar-item has-dropdown is-hoverable" onMouseOver={showDropdown}>
-              <Link className="navbar-link" to={""}>
-                Admin menu
-              </Link>
-              <div className="navbar-dropdown">
-                <Link className="navbar-item" to={`/${i18n.language}/admin`}>
-                  Felmérések szerkesztése
+            </Link>
+            <Link className="navbar-item" to={`/${i18n.language}/profile`}>
+              Profilom
+            </Link>
+            {currentUser?.rolecode === "ADMIN" && (
+              <div className="navbar-item has-dropdown is-hoverable">
+                <Link className="navbar-link" to={""}>
+                  Admin menu
                 </Link>
-                <hr className="navbar-divider" />
-                <a className="navbar-item" href="/">
-                  Felhasználók kezelése
-                </a>
+                <div className="navbar-dropdown">
+                  <Link className="navbar-item" to={`/${i18n.language}/admin`}>
+                    Felmérések szerkesztése
+                  </Link>
+                  <hr className="navbar-divider" />
+                  <a className="navbar-item" href="/">
+                    Felhasználók kezelése
+                  </a>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="navbar-end pr-6">
             {currentUser ? (
