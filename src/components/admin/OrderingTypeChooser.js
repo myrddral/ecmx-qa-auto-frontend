@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const OrderingTypeChooser = ({ setIsShowQuestionList, setAssessmentVersionType }) => {
+  const { t } = useTranslation();
   const [location, setLocation] = useState();
   const [fuelType, setFuelType] = useState();
   const [chassisType, setChassisType] = useState();
   const [noOfDoors, setNoOfDoors] = useState();
   const isAllSelected = !!location && !!fuelType && !!chassisType && !!noOfDoors;
+  const translationPrefix = 'admin.questionEditor.typeChooser'
 
   useEffect(() => {
     if (isAllSelected) {
       setIsShowQuestionList(true);
       setAssessmentVersionType({
-        locaton: location,
+        location: location,
         fuelType: fuelType,
         chassisType: chassisType,
         noOfDoors: noOfDoors,
@@ -36,50 +39,50 @@ const OrderingTypeChooser = ({ setIsShowQuestionList, setAssessmentVersionType }
         onClick={isAllSelected ? clearSelection : undefined}
       >
         <div className="select is-multiple is-primary mr-3">
-          <p className="title is-6 has-text-centered">Felmérés helyszíne</p>
+          <p className="title is-6 has-text-centered">{t(`${translationPrefix}.inspectionLocation`)}</p>
           {isAllSelected && <p className="has-text-centered has-text-weight-bold is-size-6">{location}</p>}
           {!isAllSelected && (
             <select multiple size="4" onChange={(e) => setLocation(e.target.value)} style={{ width: 160 }}>
-              <option value="Utca">Utca</option>
-              <option value="Emelő">Emelő</option>
-              <option value="Akna">Akna</option>
+              <option value="street">{t(`${translationPrefix}.street`)}</option>
+              <option value="lift">{t(`${translationPrefix}.lift`)}</option>
+              <option value="inspection_pit">{t(`${translationPrefix}.inspectionPit`)}</option>
             </select>
           )}
         </div>
 
         <div className="select is-multiple is-primary mr-3">
-          <p className="title is-6 has-text-centered">Üzemanyag típusa</p>
+          <p className="title is-6 has-text-centered">{t(`${translationPrefix}.fuelType`)}</p>
           {isAllSelected && <p className="has-text-centered has-text-weight-bold is-size-6">{fuelType}</p>}
           {!isAllSelected && (
             <select multiple size="4" onChange={(e) => setFuelType(e.target.value)} style={{ width: 160 }}>
-              <option value="Benzin">Benzin</option>
-              <option value="Dízel">Dízel</option>
-              <option value="Elektromos">Elektromos</option>
-              <option value="Hybrid">Hybrid</option>
-              <option value="Hirdogén">Hirdogén</option>
+              <option value="gasoline">{t(`${translationPrefix}.gasoline`)}</option>
+              <option value="diesel">{t(`${translationPrefix}.diesel`)}</option>
+              <option value="electric">{t(`${translationPrefix}.electric`)}</option>
+              <option value="hybrid">{t(`${translationPrefix}.hybrid`)}</option>
+              <option value="hydrogen">{t(`${translationPrefix}.hydrogen`)}</option>
             </select>
           )}
         </div>
 
         <div className="select is-multiple is-primary mr-3">
-          <p className="title is-6 has-text-centered">Karosszéria típusa</p>
+          <p className="title is-6 has-text-centered">{t(`${translationPrefix}.chassisType`)}</p>
           {isAllSelected && <p className="has-text-centered has-text-weight-bold is-size-6">{chassisType}</p>}
           {!isAllSelected && (
             <select multiple size="4" onChange={(e) => setChassisType(e.target.value)} style={{ width: 160 }}>
-              <option value="Kisautó">Kisautó</option>
-              <option value="Kombi">Kombi</option>
-              <option value="Limuzin/szedán">Limuzin/szedán</option>
-              <option value="Sportautó/Coupé">Sportautó/Coupé</option>
-              <option value="Cabrio/Roadster">Cabrio/Roadster</option>
-              <option value="SUV/Terepjáró">SUV/Terepjáró</option>
-              <option value="Pickup">Pickup</option>
-              <option value="Kisbusz/Egyterű">Kisbusz/Egyterű</option>
+              <option value="small_car">{t(`${translationPrefix}.smallCar`)}</option>
+              <option value="estate">{t(`${translationPrefix}.estate`)}</option>
+              <option value="saloon">{t(`${translationPrefix}.saloon`)}</option>
+              <option value="sports_car_coupe">{t(`${translationPrefix}.sportsCarCoupe`)}</option>
+              <option value="cabrio_roadster">{t(`${translationPrefix}.cabrioRoadster`)}</option>
+              <option value="suv_offroad">{t(`${translationPrefix}.suvOffroad`)}</option>
+              <option value="pickup">{t(`${translationPrefix}.pickup`)}</option>
+              <option value="van_minibus">{t(`${translationPrefix}.vanMinibus`)}</option>
             </select>
           )}
         </div>
 
         <div className="select is-multiple is-primary">
-          <p className="title is-6 has-text-centered">Ajtók száma</p>
+          <p className="title is-6 has-text-centered">{t(`${translationPrefix}.noOfDoors`)}</p>
           {isAllSelected && <p className="has-text-centered has-text-weight-bold is-size-6">{noOfDoors}</p>}
           {!isAllSelected && (
             <select multiple size="4" onChange={(e) => setNoOfDoors(e.target.value)} style={{ width: 160 }}>

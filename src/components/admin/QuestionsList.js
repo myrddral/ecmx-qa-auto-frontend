@@ -1,116 +1,102 @@
 import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import ModalContentQuestionEdit from "../modal/ModalContentQuestionEdit";
+import Modal from "../modal/Modal";
 import "./ordering.css";
 
-const QuestionsList = ({ translations, questionsGroups, setQuestionsGroups }) => {
-  const [isOrderingGroups, setIsOrderingGroups] = useState(true);
-  const [currentGroupIndex, setCurrentGroupIndex] = useState(null);
-
-  // On group choosing ( button on each card )
-  function onQuestionsOrdering(index) {
-    setCurrentGroupIndex(index);
-    setIsOrderingGroups(false);
-  }
-
-  // on groups ordering ( back button above all the cards)
-  function onGroupsOrdering() {
-    setCurrentGroupIndex(null);
-    setIsOrderingGroups(true);
-  }
+const QuestionsList = ({ translations, questions, setQuestions }) => {
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   function onDrop(result) {
     if (!result.destination) return;
-    const items = isOrderingGroups
-      ? [...questionsGroups]
-      : [...questionsGroups[currentGroupIndex].ASSESSMENTS_QUESTIONS];
+    const items = [...questions];
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
     for (let i = 0; i < items.length; i++) {
-      isOrderingGroups ? (items[i].QUESTION_GROUP_ORDER = i + 1) : (items[i].QUESTION_ORDER = i + 1);
+      items[i].QUESTION_ORDER = i + 1;
     }
-    // const isertQuestions = () => {
-    const qGroupCopy = questionsGroups;
-    !isOrderingGroups && (qGroupCopy[currentGroupIndex].ASSESSMENTS_QUESTIONS = items);
-    // };
-    isOrderingGroups ? setQuestionsGroups(items) : setQuestionsGroups(qGroupCopy);
+    setQuestions(items);
   }
 
+  const handleEditClick = (questionCode) => {
+    const question = questions.find((q) => q.CODE === questionCode);
+    setSelectedQuestion(question);
+    setIsOpen(true);
+  };
+
+  const handleDeleteClick = () => {};
+
   return (
-    <>
-      <section>
-        <div className="container">
-          {translations &&
-            questionsGroups &&
-            (isOrderingGroups ? (
-              <>
-                <DragDropContext onDragEnd={onDrop}>
-                  <Droppable droppableId="questionsGroup">
-                    {(provided) => (
-                      <div className="questionsGroup" {...provided.droppableProps} ref={provided.innerRef}>
-                        {questionsGroups.map(({ QUESTION_GROUP_ORDER, CODE }, index) => {
-                          return (
-                            <Draggable
-                              onClick={() => onQuestionsOrdering(index)}
-                              key={QUESTION_GROUP_ORDER}
-                              draggableId={QUESTION_GROUP_ORDER.toString()}
-                              index={index}
-                            >
-                              {(provided) => (
-                                <li
-                                  className="is-flex is-justify-content-space-between"
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <p>{translations.find((translation) => translation.CODE === CODE)?.TRANSLATION}</p>
-                                  <button
-                                    className="button is-primary-darker"
-                                    onClick={() => onQuestionsOrdering(index)}
-                                  >
-                                    Csoport szerkesztése
-                                  </button>
-                                </li>
-                              )}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
-                </DragDropContext>
-              </>
-            ) : (
-              <DragDropContext onDragEnd={onDrop}>
-                <button className="button is-primary-darker m-4" onClick={onGroupsOrdering}>
-                  Vissza
-                </button>
-                <Droppable droppableId="questionsGroup">
-                  {(provided) => (
-                    <div className="questionsGroup" {...provided.droppableProps} ref={provided.innerRef}>
-                      {questionsGroups[currentGroupIndex].ASSESSMENTS_QUESTIONS.map(
-                        ({ QUESTION_ORDER, CODE }, index) => {
-                          return (
-                            <Draggable key={QUESTION_ORDER} draggableId={QUESTION_ORDER.toString()} index={index}>
-                              {(provided) => (
-                                <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                  <p>{translations.find((translation) => translation.CODE === CODE)?.TRANSLATION}</p>
-                                </li>
-                              )}
-                            </Draggable>
-                          );
-                        }
+    <section>
+      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
+        <ModalContentQuestionEdit
+          setIsOpen={setIsOpen}
+          selectedQuestion={selectedQuestion}
+          translations={translations}
+        />
+      </Modal>
+      <div className="container is-flex is-justify-content-center">
+        <DragDropContext onDragEnd={onDrop}>
+          <Droppable droppableId="questions">
+            {(provided) => (
+              <div className="questions" {...provided.droppableProps} ref={provided.innerRef}>
+                {questions.map(({ CODE, ASSESSMENT_GROUP }, index) => {
+                  return (
+                    <Draggable key={CODE} draggableId={CODE} index={index}>
+                      {(provided) => (
+                        <li
+                          className=""
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <p>
+                            {translations.find((translation) => translation.CODE === CODE)?.TRANSLATION} /{" "}
+                            <span className="is-size-7 is-italic has-text-weight-normal">
+                              {
+                                translations.find((translation) => translation.CODE === ASSESSMENT_GROUP.CODE)
+                                  ?.TRANSLATION
+                              }
+                            </span>
+                          </p>
+                          <div className="field has-addons is-right">
+                            <p className="control">
+                              <button
+                                className="button"
+                                onClick={handleDeleteClick}
+                                style={{ border: "none", backgroundColor: "transparent" }}
+                              >
+                                <span className="icon is-small">
+                                  <i className="fa fa-trash has-text-danger"></i>
+                                </span>
+                              </button>
+                            </p>
+                            <p className="control">
+                              <button
+                                className="button"
+                                onClick={()=>handleEditClick(CODE)}
+                                style={{ border: "none", backgroundColor: "transparent" }}
+                              >
+                                <span className="icon is-small">
+                                  <i className="fa fa-pencil-square-o"></i>
+                                </span>
+                              </button>
+                            </p>
+                          </div>
+                        </li>
                       )}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              </DragDropContext>
-            ))}
-        </div>
-      </section>
-    </>
+                    </Draggable>
+                  );
+                })}
+                <span className="is-invisible">{provided.placeholder}</span>
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
+    </section>
   );
 };
 

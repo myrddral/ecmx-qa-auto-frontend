@@ -3,18 +3,21 @@ import ModalContentConfirmSave from "../modal/ModalContentConfirmSave";
 import { getApiUrl } from "../../utils/helpers";
 import OrderingTypeChooser from "./OrderingTypeChooser";
 import QuestionsList from "./QuestionsList";
+import ModalContentQuestionEdit from "../modal/ModalContentQuestionEdit";
 import Modal from "../modal/Modal";
 import toast from "react-hot-toast";
+import useFetch from "../../hooks/useFetch";
 import "./ordering.css";
 
 const Ordering = () => {
-  const [currentVersion, setCurrentVersion] = useState(null);
-  const [translations, setTranslations] = useState([]);
-  const [questionsGroups, setQuestionsGroups] = useState(null);
+  // const [currentVersion, setCurrentVersion] = useState(null);
+  const translations = useFetch(`${getApiUrl()}/assessments/translations`);
+  const [questions, setQuestions] = useState([]);
   const [isSaved, setIsSaved] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
   const [isShowQuestionList, setIsShowQuestionList] = useState(false);
-  const [assessmentVersionType, setAssessmentVersionType] = useState(null);
+  const [versionFilterDetails, setVersionFilterDetails] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -31,72 +34,92 @@ const Ordering = () => {
       "Content-Type": "application/json",
     };
 
-    fetchLatestVersionNumber();
-    currentVersion && isShowQuestionList && fetchGroups();
-    fetchTranslations();
+    (async () => {
+      versionFilterDetails && (await fetchQuestions());
+    })();
 
-    async function fetchLatestVersionNumber() {
+    // async function fetchLatestVersionNumber() {
+    //   try {
+    //     const url = `${getApiUrl()}/assessments/get-latest-version-number`;
+    //     const response = await fetch(url, { headers: headers });
+    //     const version = await response.text();
+    //     setCurrentVersion(version);
+    //   } catch (err) {
+    //     setError(err);
+    //   }
+    // }
+
+    async function fetchQuestions(version) {
       try {
-        const url = `${getApiUrl()}/assessments/get-latest-version-number`;
+        let url = "";
+        version
+          ? (url = `${getApiUrl()}/assessments/question-list/${version}`)
+          : (url = `${getApiUrl()}/assessments/question-list`);
         const response = await fetch(url, { headers: headers });
-        const version = await response.text();
-        setCurrentVersion(version);
+        const questions = await response.json();
+        if (!version) {
+          questions.forEach((questions, i) => {
+            questions.QUESTION_ORDER = i + 1;
+          });
+        }
+        questions.sort((a, b) => a.QUESTION_ORDER - b.QUESTION_ORDER);
+        setQuestions(questions);
       } catch (err) {
         setError(err);
       }
     }
+  }, [isShowQuestionList, versionFilterDetails]);
 
-    async function fetchGroups() {
-      try {
-        const url = `${getApiUrl()}/assessments/questionGroupTree/${currentVersion}`;
-        const response = await fetch(url, { headers: headers });
-        const groups = await response.json();
-        groups.sort((a, b) => a.QUESTION_GROUP_ORDER - b.QUESTION_GROUP_ORDER);
-        groups.map((group) => group.ASSESSMENTS_QUESTIONS.sort((a, b) => a.QUESTION_ORDER - b.QUESTION_ORDER));
-        setQuestionsGroups(groups);
-      } catch (err) {
-        setError(err);
-      }
-    }
+  const handleSaveClick = () => {
+    setIsEditMode(false);
+    setIsOpen(true);
+  };
 
-    // Fetching translations
-    async function fetchTranslations() {
-      try {
-        const url = `${getApiUrl()}/assessments/translations`;
-        const response = await fetch(url, { headers: headers });
-        const translations = await response.json();
-        setTranslations(translations);
-      } catch (err) {
-        setError(err);
-      }
-    }
-  }, [currentVersion, isShowQuestionList]);
+  const handleNewQuestionClick = () => {
+    setIsEditMode(true);
+    setIsOpen(true);
+  };
 
   return (
     <>
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-        <ModalContentConfirmSave
-          setIsOpen={setIsOpen}
-          setIsSaved={setIsSaved}
-          questionsGroups={questionsGroups}
-          assessmentVersionType={assessmentVersionType}
-        />
+        {!isEditMode ? (
+          <ModalContentConfirmSave
+            setIsOpen={setIsOpen}
+            setIsSaved={setIsSaved}
+            questions={questions}
+            versionFilterDetails={versionFilterDetails}
+          />
+        ) : (
+          <ModalContentQuestionEdit setIsOpen={setIsOpen} translations={translations} />
+        )}
       </Modal>
       <>
-        <section className="filter-section mt-5 mb-5">
+        <section className="filter-section mt-5 mb-5" style={{ maxWidth: 1000, margin: "auto" }}>
           <div className="container">
-            <div className="columns">
+            <div className="columns is-flex">
               <div className="column is-narrow">
                 <OrderingTypeChooser
                   setIsShowQuestionList={setIsShowQuestionList}
-                  setAssessmentVersionType={setAssessmentVersionType}
+                  setAssessmentVersionType={setVersionFilterDetails}
                 />
               </div>
               <div className="column is-flex is-justify-content-flex-end">
                 {isShowQuestionList && (
-                  <button className={`button is-primary-darker m-4`} onClick={() => setIsOpen(true)}>
-                    Mentés
-                  </button>
+                  <div className="buttons are-small is-flex is-flex-direction-column">
+                    <button className={`button is-primary-darker is-fullwidth`} onClick={handleSaveClick}>
+                      <span className="icon mr-2">
+                        <i className="fas fa-lg fa-floppy-disk"></i>
+                      </span>
+                      Új verzió mentése
+                    </button>
+                    <button className={`button is-primary-darker is-fullwidth`} onClick={handleNewQuestionClick}>
+                      <span className="icon mr-2">
+                        <i className="fas fa-lg fa-plus"></i>
+                      </span>
+                      Kérdés hozzáadása
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
@@ -107,9 +130,10 @@ const Ordering = () => {
             {isShowQuestionList ? (
               <QuestionsList
                 translations={translations}
-                questionsGroups={questionsGroups}
-                setQuestionsGroups={setQuestionsGroups}
+                questions={questions}
+                setQuestions={setQuestions}
                 isSaved={isSaved}
+                isEditMode={isEditMode}
               />
             ) : (
               <section className="section">

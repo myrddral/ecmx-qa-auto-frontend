@@ -39,6 +39,32 @@
   "profile": {
     "title": "Profile"
   },
+  "admin": {
+    "questionEditor": {
+      "typeChooser": {
+        "inspectionLocation": "Location",
+        "fuelType": "Fuel type",
+        "chassisType": "Chassis type",
+        "noOfDoors": "Number of doors",
+        "street": "Street",
+        "lift": "Lift",
+        "inspectionPit": "Inspection pit",
+        "gasoline": "Gasoline",
+        "diesel": "Diesel",
+        "electric": "Electric",
+        "hybrid": "Hybrid",
+        "hydrogen": "Hydrogen",
+        "smallCar": "Small car",
+        "estate": "Estate",
+        "saloon": "Saloon",
+        "sportsCarCoupe": "Sportscar/Coupé",
+        "cabrioRoadster": "Cabrio/Roadster",
+        "suvOffroad": "SUV/Offroad",
+        "pickup": "Pickup",
+        "vanMinibus": "Van/Minibus"
+      }
+    }
+  },
   "payment": {
     "pay": "Pay",
     "title": "Pay by card",

@@ -3,17 +3,17 @@ const NeedPhotoVideoSwitches = () => {
     console.log(e);
   };
   return (
-    <div className="is-flex">
+    <div className="is-flex is-justify-content-space-evenly">
       <div className="field">
         <input
           id="isNeedVideo"
           type="checkbox"
           name="isNeedVideo"
-          className="switch is-rounded"
+          className="switch is-rounded mr-2"
           defaultChecked={true}
           onChange={(e) => setIsNeedPhoto(e.target.checked)}
         />
-        <label htmlFor="isNeedVideo"> Need photo</label>
+        <label htmlFor="isNeedVideo">Kép szükséges?</label>
       </div>
 
       <div className="field">
@@ -21,11 +21,11 @@ const NeedPhotoVideoSwitches = () => {
           id="isNeedVideo"
           type="checkbox"
           name="isNeedVideo"
-          className="switch is-rounded"
+          className="switch is-rounded mr-2"
           defaultChecked={true}
           onChange={(e) => setIsNeedPhoto(e.target.checked)}
         />
-        <label htmlFor="isNeedVideo"> Need video</label>
+        <label htmlFor="isNeedVideo">Videó szükséges?</label>
       </div>
     </div>
   );

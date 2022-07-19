@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getApiUrl } from "../../utils/helpers";
 import toast from "react-hot-toast";
 
-const ModalContentConfirmSave = ({ setIsOpen, setIsSaved, questionsGroups, assessmentVersionType }) => {
+const ModalContentConfirmSave = ({ setIsOpen, setIsSaved, questions, versionFilterDetails }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
@@ -15,9 +15,9 @@ const ModalContentConfirmSave = ({ setIsOpen, setIsSaved, questionsGroups, asses
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${getApiUrl()}/assessments/add-new-version`, {
+      const response = await fetch(`${getApiUrl()}/assessments/add-new-version-questions`, {
         method: "POST",
-        body: JSON.stringify({questionsGroups, assessmentVersionType}),
+        body: JSON.stringify({questions, versionFilterDetails}),
         headers: {
           "Content-Type": "application/json",
           Authorization: localStorage.getItem("token"),
@@ -25,6 +25,7 @@ const ModalContentConfirmSave = ({ setIsOpen, setIsSaved, questionsGroups, asses
       });
       if (response.ok) {
         setIsSaved(true);
+        console.log(await response.json())
       }
       setTimeout(() => {
         setIsSaved(false);
@@ -51,7 +52,7 @@ const ModalContentConfirmSave = ({ setIsOpen, setIsSaved, questionsGroups, asses
           Ezzel egy új verzió keletkezik a kérdéssorból az általad kiválaszott felmérés-típushoz.
         </div>
       </section>
-      <div className="is-flex is-justify-content-center">
+      <div className="buttons is-flex is-justify-content-center pb-2">
         <button
           onClick={handleSave}
           className={`button is-danger confirm-button mr-2 ${isSubmitting && "is-loading"}`}

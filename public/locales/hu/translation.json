@@ -39,6 +39,32 @@
   "profile": {
     "title": "Profil"
   },
+  "admin": {
+    "questionEditor": {
+      "typeChooser": {
+        "inspectionLocation": "Felmérés helyszíne",
+        "fuelType": "Üzemanyag típusa",
+        "chassisType": "Karosszéria típusa",
+        "noOfDoors": "Ajtók száma",
+        "street": "Utca",
+        "lift": "Emelő",
+        "inspectionPit": "Akna",
+        "gasoline": "Benzin",
+        "diesel": "Dízel",
+        "electric": "Elektromos",
+        "hybrid": "Hybrid",
+        "hydrogen": "Hidrogén",
+        "smallCar": "Kisautó",
+        "estate": "Kombi",
+        "saloon": "Limuzin/Szedán",
+        "sportsCarCoupe": "Sportautó/Coupé",
+        "cabrioRoadster": "Cabrio/Roadster",
+        "suvOffroad": "SUV/Terepjáró",
+        "pickup": "Pickup",
+        "vanMinibus": "Kiszbusz/Egyterű"
+      }
+    }
+  },
   "payment": {
     "pay": "Fizetés",
     "title": "Bankkártyás fizetés",

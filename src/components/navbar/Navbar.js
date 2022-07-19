@@ -60,7 +60,7 @@ const Navbar = () => {
                   Admin menu
                 </Link>
                 <div className="navbar-dropdown">
-                  <Link className="navbar-item" to={`/${i18n.language}/admin`}>
+                  <Link className="navbar-item" to={`/${i18n.language}/admin/ordering`}>
                     Felmérések szerkesztése
                   </Link>
                   <hr className="navbar-divider" />

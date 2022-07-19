@@ -25,6 +25,7 @@ import Profile from "./components/profile/Profile";
 import PasswordReset from "./components/PasswordReset";
 import useAuth from "./hooks/useAuth";
 import { Toaster } from 'react-hot-toast';
+import Ordering from "./components/admin/Ordering_new";
 // import { useTranslation } from "react-i18next";
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
           <Route path={`${baseRouteUrl}/packages/payment`} element={<Payment />} />
           <Route path={`${baseRouteUrl}/packages`} element={<Packages />} />
           <Route path={`${baseRouteUrl}/admin`} element={<Admin />} />
+          <Route path={`${baseRouteUrl}/admin/ordering`} element={<Ordering />} />
           <Route path={`/reset`} element={<PasswordReset />} />
           <Route path={`/serverlogs`} element={<Logs />} />
           <Route path={`/confirm-account`} element={<ConfirmAccount />} />
